@@ -17,12 +17,12 @@
 
 <ion-content padding>
   <h1>
-    <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
+    <button ion-button color="dark" full round (click)="scan()">Start Scan!</button>
   </h1>
-  
+  Selected product: {{ selectedProduct }}
   <ion-card *ngIf="productFound">
     Fann eit produkt: {{ selectedProduct }}
-    <ion-card-header>
+    <ion-card-header> 
       <h2>Price: $ {{selectedProduct.price}}</h2>
     </ion-card-header>
     <ion-card-content>
