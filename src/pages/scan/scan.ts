@@ -58,7 +58,7 @@ export class ScanPage {
       }
       console.log("Scanned successfully!");
       console.log(barcodeData);
-      this.selectedProduct = barcodeData;
+      this.selectedProduct = barcodeData.text;
       this.goToResult(barcodeData);
     }, (err) => {
       console.log(err);
