@@ -1,0 +1,8 @@
+{
+  "name": "bokskanner",
+  "app_id": "946ca54b",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
