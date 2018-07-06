@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
+import { HttpClient } from '@angular/common/http';
+
 /**
  * Generated class for the ScanPage page.
  *
@@ -19,12 +21,13 @@ export class ScanPage {
   public scannedText: string;
   public buttonText: string;
   public loading: boolean;
+  resultat: any;
   private eventId: number;
   public eventTitle: string;
   products: any;
   selectedProduct: any;
   productFound:boolean = false;
-  constructor(private toast: Toast,
+  constructor(private toast: Toast, public http: HttpClient,
     public dataService: DataServiceProvider, public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner) {
       
       
@@ -59,14 +62,25 @@ export class ScanPage {
       console.log("Scanned successfully!");
       console.log(barcodeData);
       this.selectedProduct = barcodeData.text;
-      this.goToResult(barcodeData);
+      this.goToResult(barcodeData.text);
     }, (err) => {
       console.log(err);
     });
   }
+   goToResultTest() {
+    this.goToResult('9788252161618');
+  }
+   goToResult(barcodeData) {
 
-  private goToResult(barcodeData) {
-    // this.navCtrl.push(ScanResultPage, {
+    let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
+
+    this.http.get(apiUrl).subscribe(data => {
+      this.resultat = data;
+
+    }, err => {
+      console.log(err);
+    });
+      // this.navCtrl.push(ScanResultPage, {
     //   scannedText: barcodeData.text
     // });
   }

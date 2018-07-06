@@ -20,6 +20,18 @@
       Start scanQR!
       <ion-icon name="qr-scanner"></ion-icon>
     </button>
+    <button ion-button full large color="secondary" icon-end (click)="goToResultTest()">
+      gotoResultTest
+      <ion-icon name="qr-scanner"></ion-icon>
+    </button>
+
+<div *ngIf="resultat">
+  RESULTAT:<br>
+  {{resultat}}
+</div>
+
+
+
 <div *ngIf="selectedProduct">
   <br>
   <h2>
