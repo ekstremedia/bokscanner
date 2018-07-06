@@ -16,11 +16,16 @@
 
 
 <ion-content padding>
-  <h1>
-    <button ion-button color="dark" full round (click)="scan()">Start Scan!</button>
-    <button ion-button color="dark" full round (click)="scanQR()">Start scanQR!</button>
-  </h1>
+    <button ion-button full large color="secondary" icon-end (click)="scanQR()">
+      Start scanQR!
+      <ion-icon name="qr-scanner"></ion-icon>
+    </button>
+<div *ngIf="selectedProduct">
+  <br>
+  <h2>
   Selected product: {{ selectedProduct }}
+</h2>
+</div>
   <ion-card *ngIf="productFound">
     Fann eit produkt: {{ selectedProduct }}
     <ion-card-header> 
