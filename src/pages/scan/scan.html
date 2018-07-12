@@ -50,16 +50,11 @@
     <hr>
   </span>
   <img *ngIf="resultat.image" [src]="resultat.image">
+<br>
+  <div (click)="resultat = ''" style='color:blue;'>tøm søket</div>
 </div>
 
 
-
-<div *ngIf="selectedProduct">
-  <br>
-  <h2>
-  Selected product: {{ selectedProduct }}
-</h2>
-</div>
   <ion-card *ngIf="productFound">
     Fann eit produkt: {{ selectedProduct }}
     <ion-card-header> 
