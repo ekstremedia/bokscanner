@@ -68,7 +68,7 @@ export class ScanPage {
     });
   }
    goToResultTest() {
-    this.goToResult('9788252161618');
+    this.goToResult('0521609283');
   }
    goToResult(barcodeData) {
 
@@ -78,6 +78,7 @@ export class ScanPage {
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
       console.log('got data:',data);
+      // console.log('google:', data.google);
     }, err => {
       console.log(err);
     });
