@@ -26,8 +26,30 @@
     </button>
 
 <div *ngIf="resultat">
-  RESULTAT:<br>
-  {{resultat}}
+  <h2 *ngIf="resultat.bookname">
+    {{ resultat.bookname }}
+  </h2>
+  Forfatter: <i *ngIf="resultat.authors">
+      {{ resultat.authors }}
+  </i>  
+  <br>
+  Utgiver: 
+  <span *ngIf="resultat.utgitt_av">
+    {{ resultat.utgitt_av }}
+  </span>
+  <span *ngIf="resultat.utgitt_aar">
+      {{ resultat.utgitt_aar }}
+    </span>
+  <span *ngIf="resultat.utgitt_hvor">
+      , {{ resultat.utgitt_hvor }}
+    </span>
+    
+  <hr>
+  <span *ngIf="resultat.description">
+    {{ resultat.description }}
+    <hr>
+  </span>
+  <img *ngIf="resultat.image" [src]="resultat.image">
 </div>
 
 

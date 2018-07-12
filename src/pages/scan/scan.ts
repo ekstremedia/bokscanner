@@ -22,7 +22,7 @@ export class ScanPage {
   public buttonText: string;
   public loading: boolean;
   resultat: any;
-  private eventId: number;
+  // private eventId: number;
   public eventTitle: string;
   products: any;
   selectedProduct: any;
@@ -72,11 +72,12 @@ export class ScanPage {
   }
    goToResult(barcodeData) {
 
-    let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
+    // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
+    let apiUrl = 'http://www.vosskulturkalender.no/get/bokId/'+barcodeData;
 
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
-
+      console.log('got data:',data);
     }, err => {
       console.log(err);
     });
