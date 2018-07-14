@@ -20,13 +20,13 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+    // { title: 'Home', component: HomePage },
+    // { title: 'List', component: ListPage },
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Scan', component: ScanPage }, 
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      { title: 'Om bokscanneren', component: OmbruktnPage },
+      { title: 'Om bokscanneren', component: OmbruktnPage }
     ];
 
   }

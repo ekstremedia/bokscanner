@@ -9,20 +9,25 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Scan!</ion-title>
+    <ion-title>Brukt'n Bokscanner</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 
 <ion-content padding>
+    <ion-item>
+        <ion-label>Les tittel</ion-label>
+        <ion-toggle [(ngModel)]="lestittel"></ion-toggle>
+      </ion-item>
+    
+
     <button ion-button full large color="secondary" icon-end (click)="scanQR()">
-      Start scanQR!
+      Scan bok
       <ion-icon name="qr-scanner"></ion-icon>
     </button>
-    <button ion-button full small color="primary" icon-end (click)="goToResultTest()">
-      gotoResultTest
-      <ion-icon name="qr-scanner"></ion-icon>
+    <button ion-button  small color="primary" icon-end (click)="goToResultTest()">
+      test
     </button>
 <!-- <div *ngIf="resultat.bibsys">
 bibsys

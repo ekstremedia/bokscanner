@@ -4,6 +4,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { HttpClient } from '@angular/common/http';
+import { TextToSpeech } from '@ionic-native/text-to-speech';
 
 /**
  * Generated class for the ScanPage page.
@@ -21,17 +22,17 @@ export class ScanPage {
   public scannedText: string;
   public buttonText: string;
   public loading: boolean;
+  public lestittel: boolean;
   resultat: any;
   // private eventId: number;
   public eventTitle: string;
   products: any;
   selectedProduct: any;
   productFound:boolean = false;
-  constructor(private toast: Toast, public http: HttpClient,
+  constructor(private tts: TextToSpeech, private toast: Toast, public http: HttpClient,
     public dataService: DataServiceProvider, public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner) {
-      
-      
-      this.dataService.getListDetails()
+
+      this.dataService.getBooks()
       .subscribe((response)=> {
           this.products = response
           console.log(this.products);
@@ -77,6 +78,17 @@ export class ScanPage {
 
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
+      if (this.resultat.google && this.lestittel) {
+        console.log('dgsgsgd');
+        this.tts.speak(this.resultat.google.bookname)
+        .then(() => console.log('Success'))
+        .catch((reason: any) => console.log(reason));
+      }
+      if (this.resultat.bibsys && this.lestittel) {
+        this.tts.speak(this.resultat.bibsys.bookname)
+        .then(() => console.log('Success'))
+        .catch((reason: any) => console.log(reason));
+      }      
       console.log('got data:',data);
       // console.log('google:', data.google);
     }, err => {

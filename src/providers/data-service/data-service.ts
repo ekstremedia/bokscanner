@@ -16,7 +16,7 @@ export class DataServiceProvider {
     
   }
 
-  getListDetails(){
+  getBooks(){
     return this.http.get('assets/data/books.json')
       .map((response:Response)=>response.json());
   }

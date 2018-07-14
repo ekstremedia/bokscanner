@@ -15,6 +15,7 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataServiceProvider } from '../providers/data-service/data-service';
+import { TextToSpeech } from '@ionic-native/text-to-speech';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+     
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,6 +44,7 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     StatusBar,
     SplashScreen,
     BarcodeScanner,
+    TextToSpeech,
     Toast,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataServiceProvider
