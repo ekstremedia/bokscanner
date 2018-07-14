@@ -21,8 +21,11 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 export class ScanPage {
   public scannedText: string;
   public buttonText: string;
+  public errorTxt: string;
   public loading: boolean;
   public lestittel: boolean;
+  public bd: any;
+
   resultat: any;
   // private eventId: number;
   public eventTitle: string;
@@ -48,11 +51,16 @@ export class ScanPage {
          console.log('Error', err);
      });    
   }
-
+  public clear() {
+    this.bd = "";
+    this.resultat = '';
+    this.errorTxt = "";
+  }
   public scanQR() {
+    this.bd = "";
     this.buttonText = "Loading..";
     this.loading = true;
-
+    this.errorTxt = "";
     this.barcodeScanner.scan().then((barcodeData) => {
       if (barcodeData.cancelled) {
         console.log("User cancelled the action!");
@@ -69,20 +77,24 @@ export class ScanPage {
     });
   }
    goToResultTest() {
+    // this.goToResult('91788248921233');
     this.goToResult('9788248921233');
   }
    goToResult(barcodeData) {
-
+    this.bd = barcodeData;
     // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
     let apiUrl = 'http://www.vosskulturkalender.no/get/bokId/'+barcodeData;
 
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
+
+      if (!data.error) {
+
       if (this.resultat.google && this.lestittel) {
         this.tts.speak(
           {
             text: this.resultat.google.bookname,
-            locale: "no-NO" // Pass any locale you want here.
+            locale: "nb-NO" // Pass any locale you want here.
           }
           )
         .then(() => console.log('Success'))
@@ -91,13 +103,24 @@ export class ScanPage {
       if (this.resultat.bibsys && this.lestittel) {
         this.tts.speak(          {
           text: this.resultat.bibsys.bookname,
-          locale: "no-NO" // Pass any locale you want here.
+          locale: "nb-NO" // Pass any locale you want here.
         })
         .then(() => console.log('Success'))
         .catch((reason: any) => console.log(reason));
       }      
       console.log('got data:',data);
       // console.log('google:', data.google);
+
+    } else {
+      console.log(barcodeData);
+      if (data.error==='nobook') {
+      this.errorTxt = 'Ingen bokdetaljer funnet på '+barcodeData+'.';
+      // this.errorTxt = barcodeData+': '+data.error;
+      }
+    }
+
+
+
     }, err => {
       console.log(err);
     });

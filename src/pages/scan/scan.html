@@ -17,7 +17,7 @@
 
 
 <ion-content padding>
-    <ion-item>
+    <ion-item text-wrap>
         <ion-label>Les tittel høgt</ion-label>
         <ion-toggle [(ngModel)]="lestittel"></ion-toggle>
       </ion-item>
@@ -35,8 +35,13 @@ bibsys
 </div> -->
 
   <hr>
+  
+  <div *ngIf="errorTxt">
+    <h2 *ngIf="bd">{{ bd }}</h2>
+      Feil: {{ errorTxt }}
+</div>
   <div *ngIf="resultat">
-      <div (click)="resultat = ''" style='color:blue;'>Tøm søket</div>  
+      <div (click)="clear()" style='color:blue;'>Tøm søket</div>  
 </div>
 
 
@@ -46,7 +51,7 @@ bibsys
 
   <ion-card *ngIf="resultat && resultat.bibsys">
 
-    <ion-item>
+    <ion-item text-wrap>
 
       <h1>{{ resultat.bibsys.bookname }}</h1>
       <span *ngIf="resultat.bibsys.utgitt_av">
@@ -98,7 +103,7 @@ bibsys
 
   <ion-card *ngIf="resultat && resultat.google">
 
-      <ion-item>
+      <ion-item text-wrap>
   
         <h1>{{ resultat.google.bookname }}</h1>
         <span *ngIf="resultat.google.utgitt_av">
