@@ -69,7 +69,7 @@ export class ScanPage {
     });
   }
    goToResultTest() {
-    this.goToResult('0521609283');
+    this.goToResult('9788248921233');
   }
    goToResult(barcodeData) {
 
@@ -79,13 +79,20 @@ export class ScanPage {
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
       if (this.resultat.google && this.lestittel) {
-        console.log('dgsgsgd');
-        this.tts.speak(this.resultat.google.bookname)
+        this.tts.speak(
+          {
+            text: this.resultat.google.bookname,
+            locale: "no-NO" // Pass any locale you want here.
+          }
+          )
         .then(() => console.log('Success'))
         .catch((reason: any) => console.log(reason));
       }
       if (this.resultat.bibsys && this.lestittel) {
-        this.tts.speak(this.resultat.bibsys.bookname)
+        this.tts.speak(          {
+          text: this.resultat.bibsys.bookname,
+          locale: "no-NO" // Pass any locale you want here.
+        })
         .then(() => console.log('Success'))
         .catch((reason: any) => console.log(reason));
       }      
