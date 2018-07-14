@@ -88,7 +88,7 @@ export class ScanPage {
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
 
-      if (!this.resultat.error) {
+      if (this.resultat && this.resultat.error) {
 
       if (this.resultat.google && this.lestittel) {
         this.tts.speak(
