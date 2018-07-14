@@ -113,10 +113,9 @@ export class ScanPage {
 
     } else {
       console.log(barcodeData);
-      if (data.error==='nobook') {
+
       this.errorTxt = 'Ingen bokdetaljer funnet på '+barcodeData+'.';
       // this.errorTxt = barcodeData+': '+data.error;
-      }
     }
 
 
