@@ -77,8 +77,8 @@ export class ScanPage {
     });
   }
    goToResultTest() {
-    // this.goToResult('91788248921233');
     this.goToResult('9788248921233');
+    // this.goToResult('97882482921233');
   }
    goToResult(barcodeData) {
     this.bd = barcodeData;
@@ -87,8 +87,8 @@ export class ScanPage {
 
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
-
-      if (this.resultat && this.resultat.error) {
+      console.log(data);
+      if (this.resultat.google || this.resultat.bibsys) {
 
       if (this.resultat.google && this.lestittel) {
         this.tts.speak(
