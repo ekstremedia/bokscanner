@@ -77,7 +77,7 @@ export class ScanPage {
     });
   }
    goToResultTest() {
-    this.goToResult('9781416562023');
+    this.goToResult('97814165e62023');
     // this.goToResult('8252161618');
     // this.goToResult('97882482921233');
   }
@@ -90,7 +90,7 @@ export class ScanPage {
 
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
-      if (this.resultat && this.resultat.bookname) {
+      if (this.resultat) {
 
       if (this.lestittel) {
         this.tts.speak(
