@@ -79,7 +79,7 @@ export class ScanPage {
     });
   }
    goToResultTest() {
-    this.goToResult('');
+    this.goToResult('8252161618');
     // this.goToResult('8252161618');
     // this.goToResult('97882482921233');
   }
