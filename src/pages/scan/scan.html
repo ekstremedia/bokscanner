@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar class='navbarColor'>
+  <ion-navbar class='navbarColor'>
 
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -17,89 +17,76 @@
 
 
 <ion-content padding>
-    <ion-item text-wrap>
-        <ion-label>Les tittel høgt</ion-label>
-        <ion-toggle [(ngModel)]="lestittel"></ion-toggle>
-      </ion-item>
-    
+  <ion-item text-wrap>
+    <ion-label>Les tittel høgt</ion-label>
+    <ion-toggle [(ngModel)]="lestittel"></ion-toggle>
+  </ion-item>
 
-    <button ion-button full large color="secondary" icon-end (click)="scanQR()">
-      Scan bok
-      <ion-icon name="qr-scanner"></ion-icon>
-    </button>
-    <button ion-button  small color="primary" icon-end (click)="goToResultTest()">
-      test
-    </button>
-<!-- <div *ngIf="resultat.bibsys">
-bibsys
-</div> -->
+
+  <button ion-button full large color="secondary" icon-end (click)="scanQR()">
+    Scan bok
+    <ion-icon name="qr-scanner"></ion-icon>
+  </button>
+  <button ion-button small color="primary" icon-end (click)="goToResultTest()">
+    test
+  </button>
+
 
   <hr>
-  
+
   <div *ngIf="errorTxt">
     <h2 *ngIf="bd">{{ bd }}</h2>
-      Feil: {{ errorTxt }}
-</div>
+    Feil: {{ errorTxt }}
+  </div>
   <div *ngIf="resultat">
-      <div (click)="clear()" style='color:blue;'>Tøm søket</div>  
-</div>
+    <div (click)="clear()" style='color:blue;'>Tøm søket</div>
+  </div>
 
- <ion-card *ngIf="resultat && resultat.bookname">
-{{ resultat }}
-      <ion-item text-wrap>
-  
-        <h1>{{ resultat.bookname }}</h1>
-        <span *ngIf="resultat.utgitt_av">
-            {{ resultat.utgitt_av }}
-          </span>
-          <span *ngIf="resultat.utgitt_aar">
-              {{ resultat.utgitt_aar }}
-            </span>
-          <span *ngIf="resultat.utgitt_hvor">
-              , {{ resultat. utgitt_hvor }}
-            </span>
-          <span *ngIf="resultat.pageCount">
-              <br>{{ resultat.pageCount }} sider
-            </span>
+  <ion-card *ngIf="resultat && resultat.bookname!==''">
+    {{ resultat }}
+    <ion-item text-wrap>
 
-      </ion-item>
-    
-      <img *ngIf="resultat.image" [src]="resultat.image">
-    
-      <ion-card-content>
-        <p>
-            {{ resultat.description }}      </p>
-            <br>
-            <p>
-                Av <i>{{ resultat.authors }}</i>
-            </p>
-      </ion-card-content>
-    
-      <ion-row>
-        <ion-col>
-          <button ion-button icon-start clear small>
-            <ion-icon name="add-circle"></ion-icon>
-            <div>Legg til</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-start clear small>
-            <ion-icon name="cash"></ion-icon>
-            <div>Solgt</div>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card>
-  
-  
-  
+      <h1>{{ resultat.bookname }}</h1>
+      <span *ngIf="resultat.utgitt_av">
+        {{ resultat.utgitt_av }}
+      </span>
+      <span *ngIf="resultat.utgitt_aar">
+        {{ resultat.utgitt_aar }}
+      </span>
+      <span *ngIf="resultat.utgitt_hvor">
+        , {{ resultat. utgitt_hvor }}
+      </span>
+      <span *ngIf="resultat.pageCount">
+        <br>{{ resultat.pageCount }} sider
+      </span>
 
+    </ion-item>
 
+    <img *ngIf="resultat.image" [src]="resultat.image">
 
+    <ion-card-content>
+      <p>
+        {{ resultat.description }} </p>
+      <br>
+      <p>
+        Av
+        <i>{{ resultat.authors }}</i>
+      </p>
+    </ion-card-content>
 
-
-
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="add-circle"></ion-icon>
+          <div>Legg til</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="cash"></ion-icon>
+          <div>Solgt</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>
-
-
-
