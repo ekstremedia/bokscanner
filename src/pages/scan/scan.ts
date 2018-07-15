@@ -90,7 +90,7 @@ export class ScanPage {
     console.log(barcodeData);
     this.bd = barcodeData;
     // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
-    let apiUrl = 'http://www.vosskulturkalender.no/get/bokId/'+barcodeData;
+    let apiUrl = 'http://www.bruktn.no/get/bokId/'+barcodeData;
     this.apiUrl = apiUrl;
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
