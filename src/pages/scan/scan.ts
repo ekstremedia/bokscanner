@@ -24,6 +24,7 @@ export class ScanPage {
   public errorTxt: string;
   public loading: boolean;
   public lestittel: boolean;
+  public apiUrl: any;
   public bd: any;
 
   resultat: any;
@@ -55,6 +56,7 @@ export class ScanPage {
     this.bd = "";
     this.resultat = '';
     this.errorTxt = "";
+    this.apiUrl = "";
   }
   public scanQR() {
     this.clear();
@@ -89,7 +91,7 @@ export class ScanPage {
     this.bd = barcodeData;
     // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
     let apiUrl = 'http://www.bruktn.no/get/bokId/'+barcodeData;
-
+    this.apiUrl = apiUrl;
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
       if (this.resultat) {
@@ -117,7 +119,7 @@ export class ScanPage {
 
     }, err => {
       console.log(err);
-      this.errorTxt = err.error;
+      this.errorTxt = JSON.stringify(err);
     });
       // this.navCtrl.push(ScanResultPage, {
     //   scannedText: barcodeData.text
