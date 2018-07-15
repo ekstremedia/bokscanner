@@ -26,8 +26,7 @@ export class ScanPage {
   public lestittel: boolean;
   public apiUrl: any;
   public bd: any;
-
-  resultat: any;
+  public resultat: any;
   // private eventId: number;
   public eventTitle: string;
   products: any;
@@ -96,16 +95,16 @@ export class ScanPage {
       this.resultat = data;
       if (this.resultat) {
 
-        if (this.lestittel) {
-          this.tts.speak(
-            {
-              text: this.resultat.bookname,
-              locale: "nb-NO" // Pass any locale you want here.
-            }
-            )
-          .then(() => console.log('Success'))
-          .catch((reason: any) => console.log(reason));
-        }
+        // if (this.lestittel) {
+        //   this.tts.speak(
+        //     {
+        //       text: this.resultat.bookname,
+        //       locale: "nb-NO" // Pass any locale you want here.
+        //     }
+        //     )
+        //   .then(() => console.log('Success'))
+        //   .catch((reason: any) => console.log(reason));
+        // }
  
       console.log('got data:',data);
       // console.log('google:', data.google);
