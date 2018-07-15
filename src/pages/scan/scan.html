@@ -44,91 +44,34 @@ bibsys
       <div (click)="clear()" style='color:blue;'>Tøm søket</div>  
 </div>
 
-
-
-
-
-
-  <ion-card *ngIf="resultat && resultat.bibsys">
-
-    <ion-item text-wrap>
-
-      <h1>{{ resultat.bibsys.bookname }}</h1>
-      <span *ngIf="resultat.bibsys.utgitt_av">
-          {{ resultat.bibsys.utgitt_av }}
-        </span>
-        <span *ngIf="resultat.bibsys.utgitt_aar">
-            {{ resultat.bibsys.utgitt_aar }}
-          </span>
-        <span *ngIf="resultat.bibsys.utgitt_hvor">
-            , {{ resultat.bibsys. utgitt_hvor }}
-          </span>
-        <span *ngIf="resultat.bibsys.pageCount">
-            <br>{{ resultat.bibsys.pageCount }} sider
-          </span>
-    </ion-item>
-  
-    <img *ngIf="resultat.bibsys.image" [src]="resultat.bibsys.image">
-  
-    <ion-card-content>
-      <p>
-          {{ resultat.bibsys.description }}      </p>
-          <br>
-          <p>
-              Av <i>{{ resultat.bibsys.authors }}</i>
-          </p>
-    </ion-card-content>
-  
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-start clear small>
-          <ion-icon name="add-circle"></ion-icon>
-          <div>Legg til</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-start clear small>
-          <ion-icon name="cash"></ion-icon>
-          <div>Solgt</div>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-        <ion-col>
-        <br><i>Data frå Bibsys.</i>
-        </ion-col>
-    </ion-row>
-
-  </ion-card>
-
-  <ion-card *ngIf="resultat && resultat.google">
+ <ion-card *ngIf="resultat">
 
       <ion-item text-wrap>
   
-        <h1>{{ resultat.google.bookname }}</h1>
-        <span *ngIf="resultat.google.utgitt_av">
-            {{ resultat.google.utgitt_av }}
+        <h1>{{ resultat.bookname }}</h1>
+        <span *ngIf="resultat.utgitt_av">
+            {{ resultat.utgitt_av }}
           </span>
-          <span *ngIf="resultat.google.utgitt_aar">
-              {{ resultat.google.utgitt_aar }}
+          <span *ngIf="resultat.utgitt_aar">
+              {{ resultat.utgitt_aar }}
             </span>
-          <span *ngIf="resultat.google.utgitt_hvor">
-              , {{ resultat.google. utgitt_hvor }}
+          <span *ngIf="resultat.utgitt_hvor">
+              , {{ resultat. utgitt_hvor }}
             </span>
-          <span *ngIf="resultat.google.pageCount">
-              <br>{{ resultat.google.pageCount }} sider
+          <span *ngIf="resultat.pageCount">
+              <br>{{ resultat.pageCount }} sider
             </span>
 
       </ion-item>
     
-      <img *ngIf="resultat.google.image" [src]="resultat.google.image">
+      <img *ngIf="resultat.image" [src]="resultat.image">
     
       <ion-card-content>
         <p>
-            {{ resultat.google.description }}      </p>
+            {{ resultat.description }}      </p>
             <br>
             <p>
-                Av <i>{{ resultat.google.authors }}</i>
+                Av <i>{{ resultat.authors }}</i>
             </p>
       </ion-card-content>
     
@@ -146,11 +89,6 @@ bibsys
           </button>
         </ion-col>
       </ion-row>
-    <ion-row>
-        <ion-col>
-        <br><i>Data frå Google.</i>
-        </ion-col>
-    </ion-row>
     </ion-card>
   
   

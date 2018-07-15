@@ -77,20 +77,20 @@ export class ScanPage {
     });
   }
    goToResultTest() {
-    this.goToResult('9788248921233');
+    this.goToResult('8252161618');
     // this.goToResult('97882482921233');
   }
    goToResult(barcodeData) {
     this.bd = barcodeData;
     // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
-    let apiUrl = 'http://www.vosskulturkalender.no/get/bokId/'+barcodeData;
+    let apiUrl = 'http://www.bruktn.no/get/bokId/'+barcodeData;
 
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
       console.log(data);
-      if (this.resultat.google || this.resultat.bibsys) {
+      if (this.resultat) {
 
-      if (this.resultat.google && this.lestittel) {
+      if (this.resultat && this.lestittel) {
         this.tts.speak(
           {
             text: this.resultat.google.bookname,
