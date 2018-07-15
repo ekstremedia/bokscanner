@@ -79,7 +79,7 @@ export class ScanPage {
     });
   }
    goToResultTest() {
-    this.goToResult('9781416562023');
+    this.goToResult('');
     // this.goToResult('8252161618');
     // this.goToResult('97882482921233');
   }
@@ -118,6 +118,7 @@ export class ScanPage {
 
     }, err => {
       console.log(err);
+      this.errorTxt = err.message;
     });
       // this.navCtrl.push(ScanResultPage, {
     //   scannedText: barcodeData.text
