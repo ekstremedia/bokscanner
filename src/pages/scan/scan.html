@@ -37,17 +37,25 @@
   <div *ngIf="bd">
 bd: {{ bd }}
 <br>
+  <div *ngIf="resultat">
+resultat: ja
+</div>
+  <div *ngIf="!resultat">
+resultat: nei
+</div>
 
     </div>
   <div *ngIf="errorTxt">
     <h2 *ngIf="bd">{{ bd }}</h2>
     Feil: {{ errorTxt }}
   </div>
+
+
   <div *ngIf="resultat">
     <div (click)="clear()" style='color:blue;'>Tøm søket</div>
   </div>
 
-  <ion-card *ngIf="resultat && resultat.bookname!==''">
+  <ion-card *ngIf="resultat">
     <ion-item text-wrap>
 
       <h1>{{ resultat.bookname }}</h1>

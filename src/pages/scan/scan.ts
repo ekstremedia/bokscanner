@@ -57,6 +57,8 @@ export class ScanPage {
     this.errorTxt = "";
   }
   public scanQR() {
+    this.clear();
+
     this.bd = "";
     this.buttonText = "Loading..";
     this.loading = true;
@@ -82,8 +84,8 @@ export class ScanPage {
     // this.goToResult('97882482921233');
   }
    goToResult(barcodeData) {
+    this.clear();
     console.log(barcodeData);
-
     this.bd = barcodeData;
     // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
     let apiUrl = 'http://www.bruktn.no/get/bokId/'+barcodeData;
@@ -92,16 +94,16 @@ export class ScanPage {
       this.resultat = data;
       if (this.resultat) {
 
-      if (this.lestittel) {
-        this.tts.speak(
-          {
-            text: this.resultat.bookname,
-            locale: "nb-NO" // Pass any locale you want here.
-          }
-          )
-        .then(() => console.log('Success'))
-        .catch((reason: any) => console.log(reason));
-      }
+        if (this.lestittel) {
+          this.tts.speak(
+            {
+              text: this.resultat.bookname,
+              locale: "nb-NO" // Pass any locale you want here.
+            }
+            )
+          .then(() => console.log('Success'))
+          .catch((reason: any) => console.log(reason));
+        }
  
       console.log('got data:',data);
       // console.log('google:', data.google);
