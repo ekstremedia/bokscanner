@@ -109,7 +109,6 @@ export class ScanPage {
       // console.log('google:', data.google);
 
     } else {
-
       this.errorTxt = 'Ingen bokdetaljer funnet på '+barcodeData+'.';
       // this.errorTxt = barcodeData+': '+data.error;
     }
@@ -118,7 +117,7 @@ export class ScanPage {
 
     }, err => {
       console.log(err);
-      this.errorTxt = err.message;
+      this.errorTxt = err.error;
     });
       // this.navCtrl.push(ScanResultPage, {
     //   scannedText: barcodeData.text
