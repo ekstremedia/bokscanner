@@ -34,22 +34,6 @@
 
   <hr>
 
-  <div *ngIf="bd">
-    bd: {{ bd }}
-  </div>
-  <br>
-  <div *ngIf="resultat">
-    resultat: ja
-  </div>
-  <div *ngIf="!resultat">
-    resultat: nei
-  </div>
-  <div *ngIf="apiUrl">
-      apiUrl: {{ apiUrl }}
-      <br>
-  </div>
-
-
   <div *ngIf="errorTxt">
     <h2 *ngIf="bd">{{ bd }}</h2>
     Feil: {{ errorTxt }}

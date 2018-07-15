@@ -80,7 +80,7 @@ export class ScanPage {
     });
   }
    goToResultTest() {
-    this.goToResult('8252161618');
+    this.goToResult('9781416562023');
     // this.goToResult('8252161618');
     // this.goToResult('97882482921233');
   }
@@ -93,18 +93,18 @@ export class ScanPage {
     this.apiUrl = apiUrl;
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
-      if (this.resultat) {
+      if (this.resultat && this.resultat.bookname) {
 
-        // if (this.lestittel) {
-        //   this.tts.speak(
-        //     {
-        //       text: this.resultat.bookname,
-        //       locale: "nb-NO" // Pass any locale you want here.
-        //     }
-        //     )
-        //   .then(() => console.log('Success'))
-        //   .catch((reason: any) => console.log(reason));
-        // }
+        if (this.lestittel) {
+          this.tts.speak(
+            {
+              text: this.resultat.bookname,
+              locale: "nb-NO" // Pass any locale you want here.
+            }
+            )
+          .then(() => console.log('Success'))
+          .catch((reason: any) => console.log(reason));
+        }
  
       console.log('got data:',data);
       // console.log('google:', data.google);
