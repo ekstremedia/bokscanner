@@ -44,7 +44,7 @@ bibsys
       <div (click)="clear()" style='color:blue;'>Tøm søket</div>  
 </div>
 
- <ion-card *ngIf="resultat">
+ <ion-card *ngIf="resultat && resultat.bookname">
 
       <ion-item text-wrap>
   

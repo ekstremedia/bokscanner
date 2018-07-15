@@ -77,42 +77,36 @@ export class ScanPage {
     });
   }
    goToResultTest() {
-    this.goToResult('8252161618');
+    this.goToResult('9781416562023');
+    // this.goToResult('8252161618');
     // this.goToResult('97882482921233');
   }
    goToResult(barcodeData) {
+    console.log(barcodeData);
+
     this.bd = barcodeData;
     // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
     let apiUrl = 'http://www.bruktn.no/get/bokId/'+barcodeData;
 
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
-      console.log(data);
-      if (this.resultat) {
+      if (this.resultat && this.resultat.bookname) {
 
-      if (this.resultat && this.lestittel) {
+      if (this.lestittel) {
         this.tts.speak(
           {
-            text: this.resultat.google.bookname,
+            text: this.resultat.bookname,
             locale: "nb-NO" // Pass any locale you want here.
           }
           )
         .then(() => console.log('Success'))
         .catch((reason: any) => console.log(reason));
       }
-      if (this.resultat.bibsys && this.lestittel) {
-        this.tts.speak(          {
-          text: this.resultat.bibsys.bookname,
-          locale: "nb-NO" // Pass any locale you want here.
-        })
-        .then(() => console.log('Success'))
-        .catch((reason: any) => console.log(reason));
-      }      
+ 
       console.log('got data:',data);
       // console.log('google:', data.google);
 
     } else {
-      console.log(barcodeData);
 
       this.errorTxt = 'Ingen bokdetaljer funnet på '+barcodeData+'.';
       // this.errorTxt = barcodeData+': '+data.error;
