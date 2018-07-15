@@ -34,6 +34,11 @@
 
   <hr>
 
+  <div *ngIf="bd">
+bd: {{ bd }}
+<br>
+
+    </div>
   <div *ngIf="errorTxt">
     <h2 *ngIf="bd">{{ bd }}</h2>
     Feil: {{ errorTxt }}
