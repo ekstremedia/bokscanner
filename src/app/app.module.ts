@@ -3,6 +3,7 @@ import { Toast } from '@ionic-native/toast';
 import { ScanPage } from './../pages/scan/scan';
 import { OmbruktnPage } from './../pages/ombruktn/ombruktn';
 import { BrowserModule } from '@angular/platform-browser';
+import {IonicStorageModule} from '@ionic/storage';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 // import { HttpModule } from '@angular/http';
@@ -27,8 +28,9 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
   ],
   imports: [
     BrowserModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),
-    HttpClientModule,
+   HttpClientModule,
     HttpModule,
      
   ],
@@ -43,6 +45,7 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
   providers: [
     StatusBar,
     SplashScreen,
+    IonicStorageModule,
     BarcodeScanner,
     TextToSpeech,
     Toast,

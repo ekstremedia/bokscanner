@@ -17,41 +17,68 @@
 
 
 <ion-content padding>
-  <ion-item text-wrap>
-    <ion-label>Tekst til tale</ion-label>
-    <ion-toggle [(ngModel)]="lestittel"></ion-toggle>
+
+
+  <ion-row align-items-end>
+    <ion-col>
+        <ion-item text-wrap>
+            <ion-label>Tekst til tale</ion-label>
+            <ion-toggle [(ngModel)]="lestittel"></ion-toggle>
+          </ion-item>
+      </ion-col>
+      </ion-row>
+      <ion-row>
+    <ion-col>
+
+
+
+  <ion-item>
+    <ion-label color="primary"  class="" floating>Hylle</ion-label>
+    <ion-input (change)="changeHylle()" [(ngModel)]="hylle"></ion-input>
   </ion-item>
+</ion-col>
+<ion-col>
+
+<ion-item>
+    <ion-label color="primary"  class="" floating>Rad</ion-label>
+    <ion-input [(ngModel)]="rad" (change)="changeRad()"></ion-input>
+  </ion-item>
+
+</ion-col>
+</ion-row>
+<ion-row align-items-end>
+  <ion-col>
 
 
   <button ion-button  full large color="secondary" icon-end (click)="scanQR()">
     Legg til bok
     <ion-icon name="qr-scanner"></ion-icon>
   </button>
-  <button ion-button  large color="primary" icon-end (click)="selgQR()">
+  </ion-col>
+  </ion-row>
+  <ion-row align-items-end>
+    <ion-col>
+ <button ion-button  large color="primary" icon-end (click)="selgQR()">
     Selg 
     <ion-icon name="qr-scanner"></ion-icon>
   </button>
+  </ion-col>
+    <ion-col>
   <button ion-button  right large color="danger" icon-end (click)="slettQR()">
     Slett 
     <ion-icon name="qr-scanner"></ion-icon>
   </button>
-  <br>
-  <button ion-button small color="primary" icon-end (click)="goToResultTest()">
+
+</ion-col>
+</ion-row>
+
+  <!-- <button ion-button small color="primary" icon-end (click)="goToResultTest()">
     test
   </button>
 
   <button ion-button small color="primary" icon-end (click)="testSlett()">
     test slett
-  </button>
-  <ion-item>
-    <ion-label color="primary"  class="" floating>Hylle</ion-label>
-    <ion-input [(ngModel)]="hylle"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label color="primary"  class="" floating>Rad</ion-label>
-    <ion-input [(ngModel)]="rad" ></ion-input>
-  </ion-item>
-
+  </button> -->
 
   <hr>
 

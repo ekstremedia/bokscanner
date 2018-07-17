@@ -6,6 +6,7 @@ import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { HttpClient } from '@angular/common/http';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ScanPage page.
@@ -22,8 +23,8 @@ import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 export class ScanPage {
   public scannedText: string;
   public buttonText: string;
-  public hylle: string;
-  public rad: string;
+  public hylle: any;
+  public rad: any;
   public bookname: string;
   public slett: any;
   public errorTxt: string;
@@ -38,7 +39,7 @@ export class ScanPage {
   products: any;
   selectedProduct: any;
   productFound:boolean = false;
-  constructor(private tts: TextToSpeech, private toast: Toast, public http: HttpClient,
+  constructor(public storage: Storage, private tts: TextToSpeech, private toast: Toast, public http: HttpClient,
     public dataService: DataServiceProvider, public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner) {
 
       this.dataService.getBooks()
@@ -46,16 +47,32 @@ export class ScanPage {
           this.products = response
           console.log(this.products);
       });
-      
-  }
 
+  }
+  changeRad() {
+    this.dataService.setRad(this.rad);
+  }
+  
+  changeHylle() {
+    this.dataService.setHylle(this.hylle);
+  }
+  
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ScanPage');
-    this.barcodeScanner.scan().then(barcodeData => {
-      console.log('Barcode data', barcodeData);
-     }).catch(err => {
-         console.log('Error', err);
-     });    
+    // this.rad = this.dataService.getRad();
+    // console.log(this.rad);
+    // this.hylle = this.dataService.getHylle();
+    this.storage.get('rad').then((value) => {
+      this.rad = value;
+    });
+    this.storage.get('hylle').then((value) => {
+      this.hylle = value;
+    });
+    // console.log('ionViewDidLoad ScanPage');
+    // this.barcodeScanner.scan().then(barcodeData => {
+    //   console.log('Barcode data', barcodeData);
+    //  }).catch(err => {
+    //      console.log('Error', err);
+    //  });    
   }
   public clear() {
     this.bd = "";
