@@ -21,7 +21,10 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 export class ScanPage {
   public scannedText: string;
   public buttonText: string;
+  public bookname: string;
+  public slett: any;
   public errorTxt: string;
+  public solgt: any;
   public loading: boolean;
   public lestittel: boolean;
   public apiUrl: any;
@@ -54,7 +57,10 @@ export class ScanPage {
   public clear() {
     this.bd = "";
     this.resultat = '';
+    this.bookname = "";
+    this.slett = "";
     this.errorTxt = "";
+    this.solgt = "";
     this.apiUrl = "";
   }
   public scanQR() {
@@ -81,6 +87,16 @@ export class ScanPage {
   }
    goToResultTest() {
     this.goToResult('9781416562023');
+    // this.goToResult('8252161618');
+    // this.goToResult('97882482921233');
+  }
+   testSelg(bokid) {
+    this.selgBok('9781416562023');
+    // this.goToResult('8252161618');
+    // this.goToResult('97882482921233');
+  }
+   testSlett(bokid) {
+    this.slettBok('9781416562023');
     // this.goToResult('8252161618');
     // this.goToResult('97882482921233');
   }
@@ -124,6 +140,110 @@ export class ScanPage {
     //   scannedText: barcodeData.text
     // });
   }
+
+
+  slettBok(barcodeData) {
+    this.clear();
+    console.log(barcodeData);
+    this.bd = barcodeData;
+    // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
+    let apiUrl = 'http://www.bruktn.no/get/slettBok/'+barcodeData;
+    this.apiUrl = apiUrl;
+    this.http.get(apiUrl).subscribe(data => {
+      let res = data;
+      if (res) {
+        this.slett = 1;
+        if (this.lestittel) {
+          this.tts.speak(
+            {
+              text: 'Slettet bok: '+this.resultat.bookname,
+              locale: "nb-NO" // Pass any locale you want here.
+            }
+            )
+          .then(() => console.log('Success'))
+          .catch((reason: any) => console.log(reason));
+        }
+ 
+      console.log('got data:',data);
+      // console.log('google:', data.google);
+
+    } else {
+      this.errorTxt = 'Ingen bokdetaljer funnet på '+barcodeData+'.';
+      // this.errorTxt = barcodeData+': '+data.error;
+      if (this.lestittel) {
+        this.tts.speak(
+          {
+            text: this.errorTxt,
+            locale: "nb-NO" // Pass any locale you want here.
+          }
+          )
+        .then(() => console.log('Success'))
+        .catch((reason: any) => console.log(reason));
+      }      
+    }
+
+
+
+    }, err => {
+      console.log(err);
+      this.errorTxt = JSON.stringify(err);
+    });
+      // this.navCtrl.push(ScanResultPage, {
+    //   scannedText: barcodeData.text
+    // });
+  }
+  selgBok(barcodeData) {
+    this.clear();
+    console.log(barcodeData);
+    this.bd = barcodeData;
+    // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
+    let apiUrl = 'http://www.bruktn.no/get/selgBok/'+barcodeData;
+    this.apiUrl = apiUrl;
+    this.http.get(apiUrl).subscribe(data => {
+      let res = data;
+      if (res) {
+        this.solgt = 1;
+        if (this.lestittel) {
+          this.tts.speak(
+            {
+              text: 'Solgt: '+this.resultat.bookname,
+              locale: "nb-NO" // Pass any locale you want here.
+            }
+            )
+          .then(() => console.log('Success'))
+          .catch((reason: any) => console.log(reason));
+        }
+ 
+      console.log('got data:',data);
+      // console.log('google:', data.google);
+
+    } else {
+      this.errorTxt = 'Ingen bokdetaljer funnet på '+barcodeData+'.';
+      // this.errorTxt = barcodeData+': '+data.error;
+      if (this.lestittel) {
+        this.tts.speak(
+          {
+            text: this.errorTxt,
+            locale: "nb-NO" // Pass any locale you want here.
+          }
+          )
+        .then(() => console.log('Success'))
+        .catch((reason: any) => console.log(reason));
+      }      
+    }
+
+
+
+    }, err => {
+      console.log(err);
+      this.errorTxt = JSON.stringify(err);
+    });
+      // this.navCtrl.push(ScanResultPage, {
+    //   scannedText: barcodeData.text
+    // });
+  }
+
+
 
 
   scan() {

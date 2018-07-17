@@ -23,12 +23,24 @@
   </ion-item>
 
 
-  <button ion-button full large color="secondary" icon-end (click)="scanQR()">
-    Scan bok
+  <button ion-button  full large color="secondary" icon-end (click)="scanQR()">
+    Legg til bok
+    <ion-icon name="qr-scanner"></ion-icon>
+  </button>
+  <button ion-button  large color="primary" icon-end (click)="selgBok()">
+    Selg bok
+    <ion-icon name="qr-scanner"></ion-icon>
+  </button>
+  <button ion-button  large color="danger" icon-end (click)="slettBok()">
+    Slett bok
     <ion-icon name="qr-scanner"></ion-icon>
   </button>
   <button ion-button small color="primary" icon-end (click)="goToResultTest()">
     test
+  </button>
+
+  <button ion-button small color="primary" icon-end (click)="testSlett()">
+    test slett
   </button>
 
 
@@ -38,6 +50,13 @@
     <h2 *ngIf="bd">{{ bd }}</h2>
     Feil: {{ errorTxt }}
   </div>
+  <div *ngIf="solgt">
+    <h2 *ngIf="bd" color="secondary ">Solgt bok!</h2>
+    
+  </div>
+  <div *ngIf="slett">
+    <h2 *ngIf="bd" color="secondary ">Slettet bok!</h2>
+</div>
 
 
   <div *ngIf="resultat">
