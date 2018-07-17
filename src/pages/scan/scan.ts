@@ -206,7 +206,7 @@ export class ScanPage {
         if (this.lestittel) {
           this.tts.speak(
             {
-              text: 'Slettet bok: '+this.resultat.bookname,
+              text: 'Slettet bok! ',
               locale: "nb-NO" // Pass any locale you want here.
             }
             )
@@ -256,7 +256,7 @@ export class ScanPage {
         if (this.lestittel) {
           this.tts.speak(
             {
-              text: 'Solgt: '+this.resultat.bookname,
+              text: 'Solgt ',
               locale: "nb-NO" // Pass any locale you want here.
             }
             )
