@@ -18,7 +18,7 @@
 
 <ion-content padding>
   <ion-item text-wrap>
-    <ion-label>Les tittel høgt</ion-label>
+    <ion-label>Tekst til tale</ion-label>
     <ion-toggle [(ngModel)]="lestittel"></ion-toggle>
   </ion-item>
 
@@ -28,13 +28,14 @@
     <ion-icon name="qr-scanner"></ion-icon>
   </button>
   <button ion-button  large color="primary" icon-end (click)="selgQR()">
-    Selg bok
+    Selg 
     <ion-icon name="qr-scanner"></ion-icon>
   </button>
-  <button ion-button  large color="danger" icon-end (click)="slettQR()">
-    Slett bok
+  <button ion-button  right large color="danger" icon-end (click)="slettQR()">
+    Slett 
     <ion-icon name="qr-scanner"></ion-icon>
   </button>
+  <br>
   <button ion-button small color="primary" icon-end (click)="goToResultTest()">
     test
   </button>
