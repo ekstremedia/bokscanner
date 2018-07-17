@@ -5,6 +5,7 @@ import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { HttpClient } from '@angular/common/http';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
+import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 
 /**
  * Generated class for the ScanPage page.
@@ -21,6 +22,8 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 export class ScanPage {
   public scannedText: string;
   public buttonText: string;
+  public hylle: string;
+  public rad: string;
   public bookname: string;
   public slett: any;
   public errorTxt: string;
@@ -154,8 +157,9 @@ export class ScanPage {
     this.clear();
     console.log(barcodeData);
     this.bd = barcodeData;
+    console.log(this.bd);
     // let apiUrl = 'http://sru.bibsys.no/search/biblio?version=1.2&operation=searchRetrieve&startRecord=1&maximumRecords=10&query='+barcodeData+'&recordSchema=marcxchange';
-    let apiUrl = 'http://www.bruktn.no/get/bokId/'+barcodeData;
+    let apiUrl = 'http://www.bruktn.no/get/bokId/'+barcodeData+'/'+this.hylle+'/'+this.rad;
     this.apiUrl = apiUrl;
     this.http.get(apiUrl).subscribe(data => {
       this.resultat = data;
