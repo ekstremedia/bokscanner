@@ -63,6 +63,8 @@ export class ScanPage {
     this.solgt = "";
     this.apiUrl = "";
   }
+
+
   public scanQR() {
     this.clear();
 
@@ -85,6 +87,54 @@ export class ScanPage {
       console.log(err);
     });
   }
+
+  public slettQR() {
+    this.clear();
+
+    this.bd = "";
+    this.buttonText = "Loading..";
+    this.loading = true;
+    this.errorTxt = "";
+    this.barcodeScanner.scan().then((barcodeData) => {
+      if (barcodeData.cancelled) {
+        console.log("User cancelled the action!");
+        this.buttonText = "Scan";
+        this.loading = false;
+        return false;
+      }
+      console.log("Scanned successfully!");
+      console.log(barcodeData);
+      this.selectedProduct = barcodeData.text;
+      this.slettBok(barcodeData.text);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+  public selgQR() {
+    this.clear();
+
+    this.bd = "";
+    this.buttonText = "Loading..";
+    this.loading = true;
+    this.errorTxt = "";
+    this.barcodeScanner.scan().then((barcodeData) => {
+      if (barcodeData.cancelled) {
+        console.log("User cancelled the action!");
+        this.buttonText = "Scan";
+        this.loading = false;
+        return false;
+      }
+      console.log("Scanned successfully!");
+      console.log(barcodeData);
+      this.selectedProduct = barcodeData.text;
+      this.selgBok(barcodeData.text);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+
+
    goToResultTest() {
     this.goToResult('9781416562023');
     // this.goToResult('8252161618');
